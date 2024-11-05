@@ -170,6 +170,18 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/admin/settings',
+    component: Layout,
+    children: [
+      {
+        path: 'settings',
+        component: () => import('@/views/dashboard/admin/settings.vue'),
+        name: 'AdminSettings',
+        meta: { title: 'Admin Settings', roles: ['ROLE_ADMIN'] }
+      }
+    ]
+  },
 
   {
     path: '/icon',

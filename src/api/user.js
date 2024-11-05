@@ -1,12 +1,18 @@
 import request from '@/utils/request'
-
 export function login(data) {
   return request({
-    url: '/vue-element-admin/user/login',
+    url: '/login_check',
     method: 'post',
-    data
-  })
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data: {
+      email: data.email,
+      password: data.password
+    }
+  });
 }
+
 
 export function getInfo(token) {
   return request({

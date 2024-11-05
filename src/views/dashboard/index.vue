@@ -14,17 +14,20 @@ export default {
   components: { adminDashboard, editorDashboard },
   data() {
     return {
-      currentRole: 'adminDashboard'
+      currentRole: null
     }
   },
   computed: {
-    ...mapGetters([
-      'roles'
-    ])
+    ...mapGetters(['roles'])
   },
   created() {
-    if (!this.roles.includes('admin')) {
+    // Détermine le tableau de bord à afficher en fonction des rôles
+    if (this.roles.includes('ROLE_ADMIN')) {
+      this.currentRole = 'adminDashboard'
+    } else if (this.roles.includes('ROLE_USER')) {
       this.currentRole = 'editorDashboard'
+    } else {
+      console.warn("Rôle non reconnu, aucun composant de tableau de bord associé")
     }
   }
 }
